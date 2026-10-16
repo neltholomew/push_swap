@@ -6,8 +6,17 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:50:01 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/16 14:54:59 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/10/16 18:50:15 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+int	*parse(char *str)
+{
+	char *arr;
+
+	
+	//ft_split()
+	//ft_atoi()
+}
