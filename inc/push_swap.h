@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
+/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/16 18:06:31 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/10/19 13:53:43 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,23 @@
 
 # include <limits.h>
 # include <stdio.h>
-# include "libft/libft.h"
+# include <stdlib.h>
+// # include "libft/libft.h"
+
+typedef struct s_node
+{
+    int             value;
+    int             index;
+    struct s_node   *next;
+    struct s_node   *prev;
+}   t_node;
+
+typedef struct s_stack
+{
+    t_node          *top;
+    t_node          *bottom;
+    int             size;
+}   t_stack;
 
 typedef enum {
 	FALSE = 0,
@@ -29,5 +45,7 @@ typedef enum {
 	COMPLEX,
 	ADAPTIVE
 } flags;
+
+void	ft_parse(char *argv);
 
 #endif
