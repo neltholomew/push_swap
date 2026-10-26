@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:05 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/19 13:59:04 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/10/20 15:03:39 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char *argv[])
 	//parse()
 
 	while (++i < argc)
-		ft_parse(argv[i]);
+		ft_parse(argv[i], argc);
 
 
 

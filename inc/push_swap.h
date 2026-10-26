@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/19 13:53:43 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/10/20 15:19:18 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
-// # include "libft/libft.h"
+# include "libft/libft.h"
 
 typedef struct s_node
 {
@@ -46,6 +46,6 @@ typedef enum {
 	ADAPTIVE
 } flags;
 
-void	ft_parse(char *argv);
+void	ft_parse(char *argv, int argc);
 
 #endif
