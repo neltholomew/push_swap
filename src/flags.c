@@ -6,11 +6,13 @@
 /*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 20:52:06 by tatiana           #+#    #+#             */
-/*   Updated: 2026/10/28 21:19:20 by tatiana          ###   ########.fr       */
+/*   Updated: 2026/11/03 18:31:01 by tatiana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+// check for "--"
 
 int	ft_is_flag(char *arg)
 {
@@ -18,6 +20,8 @@ int	ft_is_flag(char *arg)
 		return (FALSE);
 	return (TRUE);
 }
+
+// if the is flag, check which
 
 int	check_flag(char *flag)
 {
@@ -32,6 +36,8 @@ int	check_flag(char *flag)
 	return (NO_FLAG);
 }
 
+// check for "--bench"
+
 int	check_bench(char *bench)
 {
 	if (ft_strncmp(bench, "--bench", 7) == 0 && bench[7] == '\0')
@@ -39,43 +45,29 @@ int	check_bench(char *bench)
 	return (FALSE);
 }
 
-void	ft_dispatch(t_stack *a, t_stack *b, int status)
-{
-	if (status == SIMPLE)
-		ft_simple_sort(a, b);
-	else if (status == MEDIUM)
-		ft_medium_sort(a, b);
-	else if (status == COMPLEX)
-		ft_complex_sort(a, b);
-	else
-		ft_adaptive_sort(a, b);
-}
+// status and bench are pointers to change the value in main
+// i returns where numbers start
 
-int	ft_parse_flags(int argc, char **argv, int *status, int *bench, int *start)
+int	ft_parse_flags(int argc, char **argv, int *status, int *bench)
 {
 	int	i;
 	int	flag;
-	int	has_strategy;
 
 	i = 1;
-	*status = ADAPTIVE;
+	*status = NO_FLAG;
 	*bench = FALSE;
-	has_strategy = FALSE;
 	while (i < argc && ft_is_flag(argv[i]))
 	{
 		flag = check_flag(argv[i]);
-		if (flag != NO_FLAG && !has_strategy)
+		if (flag != NO_FLAG && *status == NO_FLAG)
 			*status = flag;
-		else if (flag != NO_FLAG)
-			return (0);
 		else if (check_bench(argv[i]) && !*bench)
 			*bench = TRUE;
 		else
-			return (0);
-		if (flag != NO_FLAG)
-			has_strategy = TRUE;
+			return (-1);
 		i++;
 	}
-	*start = i;
-	return (1);
+	if (*status == NO_FLAG)
+		*status = ADAPTIVE;
+	return (i);
 }
