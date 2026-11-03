@@ -3,166 +3,150 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:50:01 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/19 15:21:18 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/10/28 21:35:52 by tatiana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+void	ft_free_values(int **values)
 {
-	size_t	len;
-	size_t	i;
+	if (*values)
+		free(*values);
+	*values = NULL;
+}
 
-	len = 0;
-	while (src[len])
-		len++;
-	if (size == 0)
-		return (len);
+void	ft_free_split(char **arr)
+{
+	int	i;
+
+	if (!arr)
+		return ;
 	i = 0;
-	while (src[i] && i < size - 1)
+	while (arr[i])
 	{
-		dest[i] = src[i];
+		free(arr[i]);
 		i++;
 	}
-	dest[i] = '\0';
-	return (len);
+	free(arr);
 }
 
-
-int	word_count(char const *s, char c)
+int	ft_atoi_safe(char *str, int *out)
 {
-	int	i;
-	int	count;
+	int			sign;
+	long long	n;
 
-	i = 0;
-	count = 0;
-	while (s[i])
+	sign = 1;
+	n = 0;
+	if (*str == '-' || *str == '+')
 	{
-		while (s[i] == c)
-			i++;
-		if (s[i])
-			count++;
-		while (s[i] && s[i] != c)
-			i++;
+		if (*str == '-')
+			sign = -1;
+		str++;
 	}
-	return (count);
+	if (!*str)
+		return (FALSE);
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (FALSE);
+		n = n * 10 + (*str - '0');
+		if ((sign == 1 && n > INT_MAX)
+			|| (sign == -1 && n > (long long)INT_MAX + 1))
+			return (FALSE);
+		str++;
+	}
+	*out = (int)(n * sign);
+	return (TRUE);
 }
 
-char	*word_split(char const *s, char c)
-{
-	char	*word;
-	int		len;
-
-	len = 0;
-	while (s[len] && s[len] != c)
-		len++;
-	word = malloc(len + 1);
-	if (!word)
-		return (NULL);
-	ft_strlcpy(word, s, len + 1);
-	return (word);
-}
-
-void	free_words(char **words, int j)
-{
-	while (j > 0)
-		free(words[--j]);
-	free(words);
-}
-
-int	fill_words(char **words, char const *s, char c)
+int	ft_convert_string(char **arr, int **values, int size)
 {
 	int	i;
-	int	j;
 
+	*values = malloc(sizeof(int) * size);
+	if (!*values)
+		return (FALSE);
 	i = 0;
-	j = 0;
-	while (s[i])
+	while (i < size)
 	{
-		while (s[i] == c)
-			i++;
-		if (!s[i])
-			break ;
-		words[j] = word_split(&s[i], c);
-		if (!words[j])
+		if (!ft_atoi_safe(arr[i], &(*values)[i]))
 		{
-			free_words(words, j);
-			return (0);
+			free(*values);
+			*values = NULL;
+			return (FALSE);
 		}
-		j++;
-		while (s[i] && s[i] != c)
-			i++;
-	}
-	words[j] = NULL;
-	return (1);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**words;
-
-	if (!s)
-		return (NULL);
-	words = malloc(sizeof(char *) * (word_count(s, c) + 1));
-	if (!words)
-		return (NULL);
-	if (!fill_words(words, s, c))
-		return (NULL);
-	return (words);
-}
-
-int is_valid(char *arr)
-{
-	int	i;
-	int status;
-
-	i = 0;
-	while (arr[i])
-	{
-		status = ft_isdigit(arr[i]);
 		i++;
 	}
-	return (status);
+	return (TRUE);
 }
-int	ft_isdup(char *arr)
+
+int	ft_valid_spacing(char *str)
 {
-	int i;
+	int	i;
+
+	if (!str || !str[0] || str[0] == ' ')
+		return (FALSE);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ' && (!str[i + 1] || str[i + 1] == ' '))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+int	ft_isdup(int *values, int size)
+{
+	int	i;
 	int	j;
 
 	i = 0;
-	while (arr[i])
+	while (i < size)
 	{
-		j = 0;
-		while ()
+		j = i + 1;
+		while (j < size)
 		{
-			if (i == j)
-				j++;
-			if (arr[i] == arr[j])
-				return (ERROR);
+			if (values[i] == values[j])
+				return (TRUE);
 			j++;
 		}
 		i++;
 	}
-
+	return (FALSE);
 }
 
-void	ft_parse(char *argv)
+int	ft_parse(char *arg, int **values, int *size)
 {
-	char **arr;
-	int status;
+	char	**arr;
+	int		count;
 
-	arr = ft_split(argv, ' ');
-	status = isvalid(*arr);
-	//ft_atoi()
-	status = ft_isdup(*arr);
+	*values = NULL;
+	*size = 0;
+	if (!ft_valid_spacing(arg))
+		return (FALSE);
+	arr = ft_split(arg, ' ');
+	if (!arr)
+		return (FALSE);
+	count = 0;
+	while (arr[count])
+		count++;
+	if (!ft_convert_string(arr, values, count))
+	{
+		ft_free_split(arr);
+		return (FALSE);
+	}
+	ft_free_split(arr);
+	if (ft_isdup(*values, count))
+	{
+		free(*values);
+		*values = NULL;
+		return (FALSE);
+	}
+	*size = count;
+	return (TRUE);
 }
-
-// int main(void)
-// {
-// 	ft_parse("1");
-// }

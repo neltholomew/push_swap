@@ -3,87 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:05 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/19 13:59:04 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/10/28 21:31:07 by tatiana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+#include <stdio.h>
 
-// int	check_bench(char *bench)
-// {
-// 	if (ft_strncmp(bench, "--bench", 8) == 0)
-// 		return (TRUE);
-// 	return (FALSE);
-// }
-
-// int	ft_strncmp(const char *s1, const char *s2, size_t n)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (i < n && s1[i] != '\0' && s2[i] != '\0')
-// 	{
-// 		if (s1[i] != s2[i])
-// 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-// 		i++;
-// 	}
-// 	if (i < n)
-// 		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-// 	return (0);
-// }
-
-
-// int check_flag(char *flag)
-// {
-// 	if (ft_strncmp(flag, "--simple", 9) == 0)
-// 		return (SIMPLE);
-// 	if (ft_strncmp(flag, "--medium", 10) == 0)
-// 		return (MEDIUM);
-// 	if (ft_strncmp(flag, "--complex", 10) == 0)
-// 		return (COMPLEX);
-// 	if (ft_strncmp(flag, "--adaptive", 11) == 0)
-// 		return (ADAPTIVE);
-// 	return (NO_FLAG);
-// }
-
-int	main(int argc, char *argv[])
+int	ft_has_space(char *str)
 {
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ')
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
+int	main(int argc, char **argv)
+{
+	int	status;
 	int	bench;
-	int	flag;
-	int i = 0;
+	int	start;
 
-	// int result = 0;
-	// result = check_flag("--simple");
-	// printf("%d\n", result);
-
-	// result = check_flag("--medium");
-	// printf("%d\n", result);
-
-	// result = check_flag("--complex");
-	// printf("%d\n", result);
-
-	// result = check_flag("--adaptive");
-	// printf("%d\n", result);
-
-	// result = check_flag("adsd");
-	// printf("%d\n", result);
-
-	// if (argc < 2)
-	// return (0);
-	// bench = check_bench(argv[1]);
-	// if (bench == TRUE)
-	// flag = check_flag(argv[2]);
-	// else
-	// flag = check_flag(argv[1]);
-	//parse()
-
-	while (++i < argc)
-		ft_parse(argv[i]);
-
-
-
-
+	if (argc == 1)
+		return (0);
+	if (!ft_parse_flags(argc, argv, &status, &bench, &start))
+		return (ft_error());
+	if (start == argc)
+		return (ft_error());
+	/* Parse numbers, build stacks, then sort. */
+	return (0);
 }

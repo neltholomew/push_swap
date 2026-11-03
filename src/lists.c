@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 12:13:13 by tarebros          #+#    #+#             */
-/*   Updated: 2026/10/19 12:28:04 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/10/26 11:47:23 by tatiana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-t_list	*ft_lstnew(int value)
+t_node	*ft_lstnew(int value)
 {
-	t_list	*new;
+	t_node	*new;
 
 	new = malloc(sizeof(*new));
 
