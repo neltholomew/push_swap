@@ -3,19 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   lists.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 12:13:13 by tarebros          #+#    #+#             */
-/*   Updated: 2026/10/19 12:28:04 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/04 12:47:17 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-t_list	*ft_lstnew(int value)
+t_node	*new_node(int value)
 {
-	t_list	*new;
+	t_node	*node;
 
-	new = malloc(sizeof(*new));
+	node = (t_node *)malloc(sizeof(t_node));
+	if (!node)
+		return (NULL);
+	node->value = value;
+	node->next = NULL;
+	node->prev = NULL;
+	return (node);
+}
+	t_stack new_stack(int size, t_node *top)
+{
+	t_stack stack;
 
+	stack.size = size;
+	stack.top = top;
+	return (stack);
 }
