@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/03 18:30:00 by tatiana           #+#    #+#             */
-/*   Updated: 2026/11/03 18:50:23 by tatiana          ###   ########.fr       */
+/*   Updated: 2026/11/05 14:48:58 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,10 @@ int	ft_error(void)
 	write(2, "Error\n", 6);
 	return (1);
 }
+
+// ft_bench();
+// [bench] disorder: 40.00%
+// [bench] strategy: Adaptive / O(n log n)
+// [bench]	total_ops: 13
+// [bench] sa: 0 sb: 0 ss: 0 pa: 5 pb: 5
+// [bench] ra: 2 rb: 1 rr: 0 rra: 0 rrb: 0 rrr: 0

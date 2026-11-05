@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/03 19:00:27 by tatiana          ###   ########.fr       */
+/*   Updated: 2026/11/05 18:28:13 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,6 @@ int		ft_parse_flags(int argc, char **argv, int *status, int *bench);
 int		ft_isdup(int *values, int size);
 int		ft_error(void);
 
+/* main.c */
+void	ft_dispatcher(int bench, int status, int *values, int size);
 #endif
