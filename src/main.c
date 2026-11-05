@@ -6,14 +6,16 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:05 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/05 18:10:53 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/05 20:22:41 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	ft_dispatcher(int flag,int *values, t_stack a, int size)
+void	ft_dispatcher(int flag, int *values, t_stack a, int size)
 {
+	float	disorder;
+
 	if (size >= 3 && size <= 5)
 		ft_insertion(a, size);
 	if (flag == SIMPLE)
@@ -22,8 +24,14 @@ void	ft_dispatcher(int flag,int *values, t_stack a, int size)
 		ft_chunk(a, size);
 	else if (flag == COMPLEX)
 		ft_radix(a, size);
+	else if (flag == ADAPTIVE || flag == NO_FLAG)
+		disorder = compute_disorder(values, size, &flag);
+	if (disorder < 0.2)
+		ft_insertion(a, size);
+	else if (disorder >= 0.2 && disorder <= 0.5)
+		ft_chunk(a, size);
 	else
-		compute_disorder(values, size, &flag);
+		ft_radix(a, size);
 }
 
 int	main(int argc, char **argv)

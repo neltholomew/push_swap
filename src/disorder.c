@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:35 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/05 15:02:57 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/05 20:23:15 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 
 // total_pairs = size - 1
 // small number of arguments
-
-// void	disorder_checker(float disorder, int *status)
-// {
-// 	if (disorder < 0.2)
-// 		status = SIMPLE;
-// 	else if (disorder >= 0.2 && disorder <= 0.5)
-// 		status = MEDIUM;
-// 	else
-// 		status = COMPLEX;
-// }
 
 float	compute_disorder(int *values, int size, int *status)
 {
@@ -46,8 +36,6 @@ float	compute_disorder(int *values, int size, int *status)
 		}
 		i++;
 	}
-	int disorder = mistakes / total_pairs;
-	disorder_checker(disorder, &status);
 	// printf("DEBUG: mistakes %f\n", mistakes);
 	// printf("DEBUG: t_p %f\n", total_pairs);
 	return (mistakes / total_pairs);
