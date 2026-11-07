@@ -104,24 +104,24 @@ static int	ft_parse_string(char *arg, int **values)
 	return (size);
 }
 
-int	ft_get_numbers(int argc, char **argv, int start, int **values)
-{
-	int	size;
+// fills st->values and st->size, returns FALSE on any error
 
-	*values = NULL;
-	if (argc - start == 1)
-		size = ft_parse_string(argv[start], values);
+int	ft_get_numbers(int argc, char **argv, t_status *st)
+{
+	st->values = NULL;
+	if (argc - st->start == 1)
+		st->size = ft_parse_string(argv[st->start], &st->values);
 	else
 	{
-		size = argc - start;
-		if (!ft_convert_string(argv + start, values, size))
-			size = -1;
+		st->size = argc - st->start;
+		if (!ft_convert_string(argv + st->start, &st->values, st->size))
+			st->size = -1;
 	}
-	if (size > 0 && ft_isdup(*values, size))
+	if (st->size > 0 && ft_isdup(st->values, st->size))
 	{
-		free(*values);
-		*values = NULL;
-		size = -1;
+		free(st->values);
+		st->values = NULL;
+		st->size = -1;
 	}
-	return (size);
+	return (st->size > 0);
 }

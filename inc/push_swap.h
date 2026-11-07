@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/05 18:28:13 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/06 17:50:09 by tatiana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,30 @@ typedef enum e_flag
 	ADAPTIVE
 }	t_flags;
 
+typedef struct s_status
+{
+	int		flag;
+	int		bench;
+	int		*values;
+	int		size;
+	int		start;
+	float	disorder;
+}	t_status;
+
 /* parse.c */
 int		ft_atoi_safe(char *str, int *out);
 int		ft_convert_string(char **arr, int **values, int size);
 int		ft_valid_spacing(char *str);
-int		ft_get_numbers(int argc, char **argv, int start, int **values);
+int		ft_get_numbers(int argc, char **argv, t_status *st);
 
 /* flags.c */
 int		ft_is_flag(char *arg);
 int		check_flag(char *flag);
 int		check_bench(char *bench);
-int		ft_parse_flags(int argc, char **argv, int *status, int *bench);
+int		ft_parse_flags(int argc, char **argv, t_status *st);
 
 /* utils.c */
 int		ft_isdup(int *values, int size);
 int		ft_error(void);
 
-/* main.c */
-void	ft_dispatcher(int bench, int status, int *values, int size);
 #endif

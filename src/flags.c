@@ -45,29 +45,29 @@ int	check_bench(char *bench)
 	return (FALSE);
 }
 
-// status and bench are pointers to change the value in main
-// i returns where numbers start
+// st is a pointer so the changes are visible in main
+// st->start ends on the first number
+// returns FALSE on a bad flag or if there are no numbers after the flags
 
-int	ft_parse_flags(int argc, char **argv, int *status, int *bench)
+int	ft_parse_flags(int argc, char **argv, t_status *st)
 {
-	int	i;
 	int	flag;
 
-	i = 1;
-	*status = NO_FLAG;
-	*bench = FALSE;
-	while (i < argc && ft_is_flag(argv[i]))
+	st->start = 1;
+	st->flag = NO_FLAG;
+	st->bench = FALSE;
+	while (st->start < argc && ft_is_flag(argv[st->start]))
 	{
-		flag = check_flag(argv[i]);
-		if (flag != NO_FLAG && *status == NO_FLAG)
-			*status = flag;
-		else if (check_bench(argv[i]) && !*bench)
-			*bench = TRUE;
+		flag = check_flag(argv[st->start]);
+		if (flag != NO_FLAG && st->flag == NO_FLAG)
+			st->flag = flag;
+		else if (check_bench(argv[st->start]) && !st->bench)
+			st->bench = TRUE;
 		else
-			return (-1);
-		i++;
+			return (FALSE);
+		st->start++;
 	}
-	if (*status == NO_FLAG)
-		*status = ADAPTIVE;
-	return (i);
+	if (st->flag == NO_FLAG)
+		st->flag = ADAPTIVE;
+	return (st->start < argc);
 }
