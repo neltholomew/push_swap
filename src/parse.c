@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:50:01 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/05 15:55:48 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/10 12:21:22 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,21 @@ int	ft_valid_spacing(char *str)
 	return (TRUE);
 }
 
-static int	ft_parse_string(char *arg, int **values)
+static int	ft_parse_string(char *arg, int **values, int *size)
 {
 	char	**arr;
-	int		size;
+	int		ok;
 	int		i;
 
 	if (!ft_valid_spacing(arg))
-		return (-1);
+		return (FALSE);
 	arr = ft_split(arg, ' ');
 	if (!arr)
-		return (-1);
-	size = 0;
-	while (arr[size])
-		size++;
-	if (!ft_convert_string(arr, values, size))
-		size = -1;
+		return (FALSE);
+	*size = 0;
+	while (arr[*size])
+		(*size)++;
+	ok = ft_convert_string(arr, values, *size);
 	i = 0;
 	while (arr[i])
 	{
@@ -101,27 +100,31 @@ static int	ft_parse_string(char *arg, int **values)
 		i++;
 	}
 	free(arr);
-	return (size);
+	return (ok);
 }
 
-// fills st->values and st->size, returns FALSE on any error
-
-int	ft_get_numbers(int argc, char **argv, t_status *st)
+int	ft_get_numbers(int argc, char **argv, t_data *data)
 {
-	st->values = NULL;
-	if (argc - st->start == 1)
-		st->size = ft_parse_string(argv[st->start], &st->values);
+	data->values = NULL;
+	if (argc - data->start == 1)
+	{
+		if (!ft_parse_string(argv[data->start], &data->values, &data->size))
+			data->size = -1;
+	}
 	else
 	{
-		st->size = argc - st->start;
-		if (!ft_convert_string(argv + st->start, &st->values, st->size))
-			st->size = -1;
+		data->size = argc - data->start;
+		if (!ft_convert_string(argv + data->start, &data->values, data->size))
+			data->size = -1;
 	}
-	if (st->size > 0 && ft_isdup(st->values, st->size))
+	if (data->size > 0 && ft_isdup(data->values, data->size))
+		data->size = -1;
+	if (data->size <= 0)
 	{
-		free(st->values);
-		st->values = NULL;
-		st->size = -1;
+		free(data->values);
+		data->values = NULL;
+		return (FALSE);
 	}
-	return (st->size > 0);
+	return (TRUE);
 }
+

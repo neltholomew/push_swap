@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tatiana <tatiana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:35 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/06 18:37:36 by tatiana          ###   ########.fr       */
+/*   Updated: 2026/11/10 12:31:57 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	ft_dispatcher(t_status *st, t_stack *a, t_stack *b)
+void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b)
 {
-	if (st->disorder == 0)
+	if (data->disorder == 0)
 		return ;
-	if (st->flag == SIMPLE || (st->flag == ADAPTIVE && (st->size <= 5
-				|| st->disorder < 0.2)))
+	if (data->flag == SIMPLE || (data->flag == ADAPTIVE && (data->size <= 5
+				|| data->disorder < 0.2)))
 		ft_insertion(a, b);
-	else if (st->flag == MEDIUM || (st->flag == ADAPTIVE && st->disorder < 0.5))
+	else if (data->flag == MEDIUM || (data->flag == ADAPTIVE && data->disorder < 0.5))
 		ft_chunk(a, b);
 	else
 		ft_radix(a, b);
