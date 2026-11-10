@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/04 12:41:08 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/05 14:34:45 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "libft/libft.h"
+# include "printf/ft_printf.h"
 
 typedef struct s_node
 {
