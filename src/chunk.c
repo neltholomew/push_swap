@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:32 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/10 17:23:38 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/11 14:22:08 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ static void	ft_push_back(t_stack *a, t_stack *b)
 		}
 		else
 		{
-    		while (pos < b->size)
-    		{
-        		rrb(b);
+			while (pos < b->size)
+			{
+				rrb(b);
 				pos++;
-    		}
+			}
 		}
 		pa(a, b);
 	}
