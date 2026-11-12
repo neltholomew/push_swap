@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 12:02:31 by tarebros          #+#    #+#             */
-/*   Updated: 2026/11/12 12:19:16 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 13:43:31 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_fill_stack(t_stack *a, t_data *data)
 	i = 0;
 	while (i < data->size)
 	{
-		node = new_node(data->values[i]);
+		node = ft_new_node(data->values[i]);
 		if (!node)
 		{
 			ft_stack_clear(a);
