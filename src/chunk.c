@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:32 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 14:41:27 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 16:17:45 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,18 +112,18 @@ static void	ft_push_back(t_stack *a, t_stack *b)
 
 void	ft_chunk(t_stack *a, t_stack *b)
 {
-	t_node	*curr;
-	int		i;
+	// t_node	*curr;
+	// int		i;
 
 	ft_push_chunks(a, b, ft_get_range(a->size));
 	ft_push_back(a, b);
 
-	curr = a->top;
-	i = 0;
-	while (i < a->size)
-	{
-		ft_printf("%d\n", curr->value);
-		curr = curr->next;
-		i++;
-	}
+// 	curr = a->top;
+// 	i = 0;
+// 	while (i < a->size)
+// 	{
+// 		ft_printf("%d\n", curr->value);
+// 		curr = curr->next;
+// 		i++;
+// 	}
 }
