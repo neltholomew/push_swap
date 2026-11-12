@@ -6,65 +6,30 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:42 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 10:45:05 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 13:36:33 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void	unlink_node(t_stack *s1)
-{
-	t_node	*node;
-
-	node = s1->top;
-	if (s1->top->next == s1->top)
-		s1->top = NULL;
-	else
-	{
-		node->prev->next = node->next;
-		node->next->prev = node->prev;
-		s1->top = node->next;
-	}
-	s1->size--;
-}
-
-static void	link_node(t_stack *s2, t_node *node)
-{
-	if (!s2->top)
-	{
-		node->next = node;
-		node->prev = node;
-	}
-	else
-	{
-		node->next = s2->top;
-		node->prev = s2->top->prev;
-		s2->top->prev->next = node;
-		s2->top->prev = node;
-	}
-	s2->top = node;
-	s2->size++;
-}
-
-static void	push_node(t_stack *s1, t_stack *s2)
-{
-	t_node	*node;
-
-	node = s1->top;
-	unlink_node(s1);
-	link_node(s2, node);
-}
-
 void	pa(t_stack *a, t_stack *b)
 {
-	if (!b->top)
+	t_node	*node;
+
+	if (!b || !b->top)
 		return ;
-	push_node(b, a);
+	node = ft_unlink_node(b);
+	ft_link_node(a, node);
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack *a, t_stack *b)
 {
-	if (!a->top)
+	t_node	*node;
+
+	if (!a || !a->top)
 		return ;
-	push_node(a, b);
+	node = ft_unlink_node(a);
+	ft_link_node(b, node);
+	ft_printf("pb\n");
 }
