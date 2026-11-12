@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:32 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 10:30:52 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 13:16:15 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,17 @@ static void	ft_push_chunks(t_stack *a, t_stack *b, int range)
 	int	i;
 
 	i = 0;
-	// pb should decrease a->size
 	while (a->size > 0)
 	{
 		if (a->top->index <= i)
 		{
 			pb(a, b);
-			rb(b);
 			i++;
+			// larger numbers stay on top
+			if (a->size > 0 && a->top->index > i + range)
+				rr(a, b);
+			else if (b->size > 1)
+				rb(b);
 		}
 		// larger numbers stay on top
 		else if (a->top->index <= i + range)
