@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:35 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/10 20:01:45 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 18:26:50 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b)
 		ft_radix(a, b);
 }
 
-float	compute_disorder(int *values, int size)
+double	compute_disorder(int *values, int size)
 {
 	int	mistakes;
 	int	total_pairs;
@@ -49,5 +49,5 @@ float	compute_disorder(int *values, int size)
 		}
 		i++;
 	}
-	return ((float)mistakes / total_pairs);
+	return ((double)mistakes / total_pairs);
 }

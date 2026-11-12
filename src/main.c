@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:05 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 14:39:04 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 18:13:51 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char **argv)
 	if (!ft_get_numbers(argc, argv, &data))
 		return (ft_error());
 	data.disorder = compute_disorder(data.values, data.size);
+	if (data.bench == TRUE)
+		print_bench(&data);
 	ft_bzero(&b, sizeof(t_stack));
 	if (!ft_fill_stack(&a, &data))
 	{

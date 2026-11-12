@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 13:43:08 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 18:27:09 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,20 @@ typedef struct s_data
 	int		*values;
 	int		size;
 	int		start;
-	float	disorder;
+	double	disorder;
+	int		strategy;
+	int		total_ops;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
 }	t_data;
 
 /* parse.c */
@@ -88,7 +101,7 @@ int		ft_isdup(int *values, int size);
 int		ft_error(void);
 
 /* disorder.c */
-float	compute_disorder(int *values, int size);
+double	compute_disorder(int *values, int size);
 void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b);
 
 /* selection.c */
@@ -118,5 +131,8 @@ void	rr(t_stack *a, t_stack *b);
 void	rra(t_stack *a);
 void	rrb(t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+
+/* bench.c */
+void	print_bench(t_data	*data);
 
 #endif
