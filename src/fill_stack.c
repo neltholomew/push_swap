@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/10 12:02:31 by tarebros          #+#    #+#             */
-/*   Updated: 2026/11/12 10:33:11 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 12:19:16 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,4 @@ int	ft_fill_stack(t_stack *a, t_data *data)
 	return (TRUE);
 }
 
-
-
-void	ft_add_to_bottom(t_stack *stack, t_node *node);
-// if (!stack->top) to see if the stack is empty
-// should add stack->size += 1
-void	ft_stack_clear(t_stack *stack);
 
