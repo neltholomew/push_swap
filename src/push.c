@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:42 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/11 14:58:04 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 10:45:05 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	unlink_node(t_stack *s1)
 		s1->top = NULL;
 	else
 	{
-		s1->top->next = s1->top;
 		node->prev->next = node->next;
 		node->next->prev = node->prev;
+		s1->top = node->next;
 	}
 	s1->size--;
 }
@@ -37,10 +37,13 @@ static void	link_node(t_stack *s2, t_node *node)
 	}
 	else
 	{
-		node->next =
+		node->next = s2->top;
+		node->prev = s2->top->prev;
+		s2->top->prev->next = node;
+		s2->top->prev = node;
 	}
-
-
+	s2->top = node;
+	s2->size++;
 }
 
 static void	push_node(t_stack *s1, t_stack *s2)
@@ -57,8 +60,11 @@ void	pa(t_stack *a, t_stack *b)
 	if (!b->top)
 		return ;
 	push_node(b, a);
-
 }
 
-
-void	pb(t_stack *a, t_stack *b);
+void	pb(t_stack *a, t_stack *b)
+{
+	if (!a->top)
+		return ;
+	push_node(a, b);
+}

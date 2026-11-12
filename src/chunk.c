@@ -6,17 +6,11 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:32 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/11 14:22:08 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/12 10:30:52 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
-// void	pa(t_stack *a, t_stack *b);
-// void	pb(t_stack *a, t_stack *b);
-// void	ra(t_stack *a);
-// void	rb(t_stack *b);
-// void	rrb(t_stack *b);
 
 // chunk size is sqrt rounded up - 10 for 100 numbers, 23 for 500
 
