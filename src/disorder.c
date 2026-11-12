@@ -6,29 +6,48 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:35 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/04 16:49:23 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/12 10:50:40 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-float	compute_disorder(char *stack_a)
+void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b)
 {
-	float	mistakes = 0;
-	float	total_pairs = 0;
-	int		i;
-	int		j;
+	if (data->disorder == 0)
+		return ;
+	if (data->flag == SIMPLE || (data->flag == ADAPTIVE && (data->size <= 5
+				|| data->disorder < 0.2)))
+		ft_selection(a, b);
+	else if (data->flag == MEDIUM || (data->flag == ADAPTIVE && data->disorder < 0.5))
+		ft_chunk(a, b);
+	else
+		ft_radix(a, b);
+}
 
+float	compute_disorder(int *values, int size)
+{
+	int	mistakes;
+	int	total_pairs;
+	int	i;
+	int	j;
+
+	if (size < 2)
+		return (0);
+	mistakes = 0;
+	total_pairs = 0;
 	i = 0;
-	while (i < (ft_strlen(stack_a) - 1))
+	while (i < size)
 	{
 		j = i + 1;
-		while(j < (int stack_a - 1))
+		while (j < size)
 		{
-			total_pairs += 1;
-			if stack_a[i] > stack_a[j]
-				mistakes += 1;
+			total_pairs++;
+			if (values[i] > values[j])
+				mistakes++;
+			j++;
 		}
+		i++;
 	}
-	return (mistakes / total_pairs);
+	return ((float)mistakes / total_pairs);
 }

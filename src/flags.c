@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 12:09:59 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/05 13:32:32 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/12 10:51:41 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,29 +45,29 @@ int	check_bench(char *bench)
 	return (FALSE);
 }
 
-// status and bench are pointers to change the value in main
-// i returns where numbers start
+// data is a pointer so the changes are visible in main
+// data->start ends on the first number
+// returns FALSE on a bad flag or if there are no numbers after the flags
 
-int	ft_parse_flags(int argc, char **argv, int *status, int *bench)
+int	ft_parse_flags(int argc, char **argv, t_data *data)
 {
-	int	i;
 	int	flag;
 
-	i = 1;
-	*status = NO_FLAG;
-	*bench = FALSE;
-	while (i < argc && ft_is_flag(argv[i]))
+	data->start = 1;
+	data->flag = NO_FLAG;
+	data->bench = FALSE;
+	while (data->start < argc && ft_is_flag(argv[data->start]))
 	{
-		flag = check_flag(argv[i]);
-		if (flag != NO_FLAG && *status == NO_FLAG)
-			*status = flag;
-		else if (check_bench(argv[i]) && !*bench)
-			*bench = TRUE;
+		flag = check_flag(argv[data->start]);
+		if (flag != NO_FLAG && data->flag == NO_FLAG)
+			data->flag = flag;
+		else if (check_bench(argv[data->start]) && !data->bench)
+			data->bench = TRUE;
 		else
-			return (-1);
-		i++;
+			return (FALSE);
+		data->start++;
 	}
-	if (*status == NO_FLAG)
-		*status = ADAPTIVE;
-	return (i);
+	if (data->flag == NO_FLAG)
+		data->flag = ADAPTIVE;
+	return (data->start < argc);
 }

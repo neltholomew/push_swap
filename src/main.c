@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:05 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/04 12:08:23 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/12 12:21:53 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 int	main(int argc, char **argv)
 {
-	int	status;
-	int	bench;
-	int	start;
-	int	size;
-	int	*values;
+	t_data	data;
+	t_stack	a;
+	t_stack	b;
 
 	if (argc == 1)
 		return (0);
-	start = ft_parse_flags(argc, argv, &status, &bench);
-	printf("start = %d\n", start);
-	printf("bench = %d\n", bench);
-	printf("status = %d\n", status);
-	if (start < 0 || start == argc)
+	ft_bzero(&data, sizeof(t_data));
+	if (!ft_parse_flags(argc, argv, &data))
 		return (ft_error());
-	size = ft_get_numbers(argc, argv, start, &values);
-	printf("size = %d\n", size);
-	if (size < 0)
+	if (!ft_get_numbers(argc, argv, &data))
 		return (ft_error());
-	free(values);
+	data.disorder = compute_disorder(data.values, data.size);
+	ft_bzero(&b, sizeof(t_stack));
+	if (!ft_fill_stack(&a, &data))
+	{
+		free(data.values);
+		return (ft_error());
+	}
+	ft_dispatcher(&data, &a, &b);
+	ft_stack_clear(&a);
+	ft_stack_clear(&b);
+	free(data.values);
 	return (0);
 }

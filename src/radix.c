@@ -6,8 +6,14 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:44 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/16 14:55:03 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/12 12:21:24 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+void	ft_radix(t_stack *a, t_stack *b)
+{
+    (void)a;
+    (void)b;
+}

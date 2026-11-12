@@ -6,8 +6,30 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:42 by pcellar           #+#    #+#             */
-/*   Updated: 2026/10/16 14:55:00 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/12 12:04:07 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+void	pa(t_stack *a, t_stack *b)
+{
+	t_node	*node;
+
+	if (!b || !b->top)
+		return ;
+	node = ft_unlink_node(b);
+	ft_link_node(a, node);
+	ft_printf("pa\n");
+}
+
+void	pb(t_stack *a, t_stack *b)
+{
+	t_node	*node;
+
+	if (!a || !a->top)
+		return ;
+	node = ft_unlink_node(a);
+	ft_link_node(b, node);
+	ft_printf("pb\n");
+}
