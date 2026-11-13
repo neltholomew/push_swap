@@ -6,61 +6,47 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:52 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 12:08:26 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/13 13:55:22 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	sa(t_stack *a)
+static void swap_top(t_stack *s)
 {
-	int	tmp;
+    int tmp;
 
-	if (!a->top || a->top->next == a->top)
-		return ;
-	tmp = a->top->value;
-	a->top->value = a->top->next->value;
-	a->top->next->value = tmp;
-	tmp = a->top->index;
-	a->top->index = a->top->next->index;
-	a->top->next->index = tmp;
+    if (!s->top || s->top->next == s->top)
+        return ;
+    tmp = s->top->index;
+    s->top->index = s->top->next->index;
+    s->top->next->index = tmp;
+}
+
+void	sa(t_stack *a, t_data *data)
+{
+	swap_top(a);
+	data->total_ops++;
+	data->sa++;
+	if (data->bench == FALSE)
 	ft_printf("sa\n");
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, t_data *data)
 {
-	int	tmp;
-
-	if (!b->top || b->top->next == b->top)
-		return ;
-	tmp = b->top->value;
-	b->top->value = b->top->next->value;
-	b->top->next->value = tmp;
-	tmp = b->top->index;
-	b->top->index = b->top->next->index;
-	b->top->next->index = tmp;
+	swap_top(b);
+	data->total_ops++;
+	data->sb++;
+	if (data->bench == FALSE)
 	ft_printf("sb\n");
 }
 
-void	ss(t_stack *a, t_stack *b)
+void    ss(t_stack *a, t_stack *b, t_data *data)
 {
-	int	tmp;
-
-	if (!a->top || a->top->next == a->top)
-		return ;
-	tmp = a->top->value;
-	a->top->value = a->top->next->value;
-	a->top->next->value = tmp;
-	tmp = a->top->index;
-	a->top->index = a->top->next->index;
-	a->top->next->index = tmp;
-	if (!b->top || b->top->next == b->top)
-		return ;
-	tmp = b->top->value;
-	b->top->value = b->top->next->value;
-	b->top->next->value = tmp;
-	tmp = b->top->index;
-	b->top->index = b->top->next->index;
-	b->top->next->index = tmp;
-	ft_printf("ss\n");
+	swap_top(a);
+	swap_top(b);
+	data->total_ops++;
+	data->ss++;
+	if (data->bench == FALSE)
+		ft_printf("ss\n");
 }

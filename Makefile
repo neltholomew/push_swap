@@ -22,7 +22,9 @@ SRCS		= src/main.c \
 			  src/push.c \
 			  src/swap.c \
 			  src/rotate.c \
-			  src/rev_rotate.c
+			  src/rev_rotate.c \
+			  src/bench.c \
+			  src/ft_printf_stderr.c
 
 OBJS		= $(SRCS:.c=.o)
 

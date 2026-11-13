@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:35 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 10:50:40 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/13 13:47:27 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b)
 		return ;
 	if (data->flag == SIMPLE || (data->flag == ADAPTIVE && (data->size <= 5
 				|| data->disorder < 0.2)))
-		ft_selection(a, b);
-	else if (data->flag == MEDIUM || (data->flag == ADAPTIVE && data->disorder < 0.5))
-		ft_chunk(a, b);
+		ft_selection(a, b, data);
+	else if (data->flag == MEDIUM
+				|| (data->flag == ADAPTIVE && data->disorder < 0.5))
+		ft_chunk(a, b, data);
 	else
-		ft_radix(a, b);
+		ft_radix(a, b, data);
 }
 
-float	compute_disorder(int *values, int size)
+double	compute_disorder(int *values, int size)
 {
 	int	mistakes;
 	int	total_pairs;
@@ -49,5 +50,5 @@ float	compute_disorder(int *values, int size)
 		}
 		i++;
 	}
-	return ((float)mistakes / total_pairs);
+	return ((double)mistakes / total_pairs);
 }

@@ -6,39 +6,44 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:46 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 12:08:10 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/13 13:56:09 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	rra(t_stack *a)
+static void rev_rotate_top(t_stack *s)
 {
-	if (!a->top || a->top->prev == a->top)
-		return ;
-	a->top = a->top->prev;
-	a->bottom = a->bottom->prev;
-	ft_printf("rra\n");
+    if (!s->top || s->top->prev == s->top)
+        return ;
+    s->top = s->top->prev;
+    s->bottom = s->bottom->prev;
 }
 
-void	rrb(t_stack *b)
+void    rra(t_stack *a, t_data *data)
 {
-	if (!b->top || b->top->prev == b->top)
-		return ;
-	b->top = b->top->prev;
-	b->bottom = b->bottom->prev;
-	ft_printf("rrb\n");
+    rev_rotate_top(a);
+    data->total_ops++;
+    data->rra++;
+    if (data->bench == FALSE)
+        ft_printf("rra\n");
 }
 
-void	rrr(t_stack *a, t_stack *b)
+void    rrb(t_stack *b, t_data *data)
 {
-	if (!a->top || a->top->prev == a->top)
-		return ;
-	a->top = a->top->prev;
-	a->bottom = a->bottom->prev;
-	if (!b->top || b->top->prev == b->top)
-		return ;
-	b->top = b->top->prev;
-	b->bottom = b->bottom->prev;
-	ft_printf("rrr\n");
+    rev_rotate_top(b);
+    data->total_ops++;
+    data->rrb++;
+    if (data->bench == FALSE)
+        ft_printf("rrb\n");
+}
+
+void    rrr(t_stack *a, t_stack *b, t_data *data)
+{
+    rev_rotate_top(a);
+    rev_rotate_top(b);
+    data->total_ops++;
+    data->rrr++;
+    if (data->bench == FALSE)
+        ft_printf("rrr\n");
 }

@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/04 12:09:09 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/04 12:09:15 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/13 13:26:41 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,4 @@ int	ft_error(void)
 	write(2, "Error\n", 6);
 	return (1);
 }
+

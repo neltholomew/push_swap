@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 16:46:56 by pcellar           #+#    #+#             */
-/*   Updated: 2026/09/29 17:12:17 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/13 13:04:39 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,8 @@ size_t	ft_strlen(const char *s)
 
 	i = 0;
 	if (!s)
-	{
 		return (0);
-	}
 	while (s[i])
-	{
 		i++;
-	}
 	return (i);
 }

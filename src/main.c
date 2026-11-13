@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:05 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 12:21:53 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/13 13:57:43 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main(int argc, char **argv)
 		return (ft_error());
 	}
 	ft_dispatcher(&data, &a, &b);
+	if (data.bench)
+    	print_bench(&data);
 	ft_stack_clear(&a);
 	ft_stack_clear(&b);
 	free(data.values);

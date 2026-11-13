@@ -6,14 +6,13 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 15:08:05 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/13 13:59:29 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -57,7 +56,20 @@ typedef struct s_data
 	int		*values;
 	int		size;
 	int		start;
-	float	disorder;
+	double	disorder;
+	int		strategy;
+	int		total_ops;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
 }	t_data;
 
 /* parse.c */
@@ -87,36 +99,41 @@ int		ft_parse_flags(int argc, char **argv, t_data *data);
 int		ft_isdup(int *values, int size);
 int		ft_error(void);
 
+/* ft_printf_stderr/c*/
+void	ft_printf_stderr(const char *format, ...);
+
 /* disorder.c */
-float	compute_disorder(int *values, int size);
+double	compute_disorder(int *values, int size);
 void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b);
 
 /* selection.c */
-void	ft_selection(t_stack *a, t_stack *b);
-
+void	ft_selection(t_stack *a, t_stack *b, t_data *data);
 /* chunk.c */
-void	ft_chunk(t_stack *a, t_stack *b);
+void	ft_chunk(t_stack *a, t_stack *b, t_data *data);
 
 /* radix.c */
-void	ft_radix(t_stack *a, t_stack *b);
+void	ft_radix(t_stack *a, t_stack *b, t_data *data);
 
 /* push.c */
-void	pa(t_stack *a, t_stack *b);
-void	pb(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b, t_data *data);
+void	pb(t_stack *a, t_stack *b, t_data *data);
 
 /* swap.c */
-void	sa(t_stack *a);
-void	sb(t_stack *b);
-void	ss(t_stack *a, t_stack *b);
+void	sa(t_stack *a, t_data *data);
+void	sb(t_stack *b, t_data *data);
+void	ss(t_stack *a, t_stack *b, t_data *data);
 
 /* rotate.c */
-void	ra(t_stack *a);
-void	rb(t_stack *b);
-void	rr(t_stack *a, t_stack *b);
+void	ra(t_stack *a, t_data *data);
+void	rb(t_stack *b, t_data *data);
+void	rr(t_stack *a, t_stack *b, t_data *data);
 
 /* rev_rotate.c */
-void	rra(t_stack *a);
-void	rrb(t_stack *b);
-void	rrr(t_stack *a, t_stack *b);
+void	rra(t_stack *a, t_data *data);
+void	rrb(t_stack *b, t_data *data);
+void	rrr(t_stack *a, t_stack *b, t_data *data);
+
+/* bench.c */
+void	print_bench(t_data	*data);
 
 #endif
