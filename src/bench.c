@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 17:43:12 by tarebros          #+#    #+#             */
-/*   Updated: 2026/11/13 12:49:46 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/13 13:18:37 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,10 @@ void	print_bench(t_data	*data)
 
 	str = ft_print_strategy(data);
 	// ft_printf("[bench] disorder: %f%%\n", data->disorder * 100);
-	ft_printf("[bench] strategy: %s", str);
-
-
-	// printf("bench = %d\n", data->bench);
-	// printf("disorder = %f%%\n", data->disorder * 100);
-	// printf("flag = %d\n", data->flag);
-	// printf("total_ops = %d\n", data->total_ops);
-	// printf("pa = %d\n", data->pa);
-	// printf("pb = %d\n", data->pb);
-	// printf("sa = %d\n", data->sa);
-	// printf("sb = %d\n", data->sb);
-	// printf("ss = %d\n", data->ss);
-	// printf("ra = %d\n", data->ra);
-	// printf("rb = %d\n", data->rb);
-	// printf("rr = %d\n", data->rr);
-	// printf("rra = %d\n", data->rra);
-	// printf("rrb = %d\n", data->rrb);
-	// printf("rrr = %d\n", data->rrr);
+	ft_printf("[bench] strategy: %s\n", str);
+	ft_printf("[bench] total_ops: %d\n", data->total_ops);
+	ft_printf("[bench] sa: %d sb: %d ss: %d pa: %d pb: %d\n",
+		data->sa, data->sb, data->ss, data->pa, data->pb);
+	ft_printf("[bench] ra: %d rb: %d rr: %d rra: %d rrb: %d rrr: %d\n",
+		data->ra, data->rb, data->rr, data->rra, data->rrb, data->rrr);
 }
