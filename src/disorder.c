@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:35 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 18:26:50 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:47:26 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b)
 		return ;
 	if (data->flag == SIMPLE || (data->flag == ADAPTIVE && (data->size <= 5
 				|| data->disorder < 0.2)))
-		ft_selection(a, b);
-	else if (data->flag == MEDIUM || (data->flag == ADAPTIVE && data->disorder < 0.5))
-		ft_chunk(a, b);
+		ft_selection(a, b, data);
+	else if (data->flag == MEDIUM
+				|| (data->flag == ADAPTIVE && data->disorder < 0.5))
+		ft_chunk(a, b, data);
 	else
-		ft_radix(a, b);
+		ft_radix(a, b, data);
 }
 
 double	compute_disorder(int *values, int size)

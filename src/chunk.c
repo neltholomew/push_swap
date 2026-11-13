@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:32 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 18:20:48 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:27:47 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_get_range(int size)
 // push everything to b, index i is how many were pushed
 // small ones (<= i) go to the bottom of b
 
-static void	ft_push_chunks(t_stack *a, t_stack *b, int range)
+static void	ft_push_chunks(t_stack *a, t_stack *b, int range, t_data *data)
 {
 	int	i;
 
@@ -36,22 +36,22 @@ static void	ft_push_chunks(t_stack *a, t_stack *b, int range)
 	{
 		if (a->top->index <= i)
 		{
-			pb(a, b);
+			pb(a, b, data);
 			i++;
 			// larger numbers stay on top
 			if (a->size > 0 && a->top->index > i + range)
-				rr(a, b);
+				rr(a, b, data);
 			else if (b->size > 1)
-				rb(b);
+				rb(b, data);
 		}
 		// larger numbers stay on top
 		else if (a->top->index <= i + range)
 		{
-			pb(a, b);
+			pb(a, b, data);
 			i++;
 		}
 		else
-			ra(a);
+			ra(a, data);
 	}
 }
 
@@ -85,7 +85,7 @@ static int	ft_max_pos(t_stack *b)
 
 // get the biggest number of b to the top the shorter way, then pa
 
-static void	ft_push_back(t_stack *a, t_stack *b)
+static void	ft_push_back(t_stack *a, t_stack *b, t_data *data)
 {
 	int	pos;
 
@@ -96,34 +96,22 @@ static void	ft_push_back(t_stack *a, t_stack *b)
 		if (pos <= b->size / 2)
 		{
 			while (pos-- > 0)
-				rb(b);
+				rb(b, data);
 		}
 		else
 		{
 			while (pos < b->size)
 			{
-				rrb(b);
+				rrb(b, data);
 				pos++;
 			}
 		}
-		pa(a, b);
+		pa(a, b, data);
 	}
 }
 
-void	ft_chunk(t_stack *a, t_stack *b)
+void	ft_chunk(t_stack *a, t_stack *b, t_data *data)
 {
-	// t_node	*curr;
-	// int		i;
-
-	ft_push_chunks(a, b, ft_get_range(a->size));
-	ft_push_back(a, b);
-
-// 	curr = a->top;
-// 	i = 0;
-// 	while (i < a->size)
-// 	{
-// 		ft_printf("%d\n", curr->value);
-// 		curr = curr->next;
-// 		i++;
-// 	}
+	ft_push_chunks(a, b, ft_get_range(a->size), data);
+	ft_push_back(a, b, data);
 }

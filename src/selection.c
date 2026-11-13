@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:37 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 18:21:55 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:28:35 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_min_pos(t_stack *a)
 	return (min_pos);
 }
 
-static void	ft_sort_three(t_stack *a)
+static void	ft_sort_three(t_stack *a, t_data *data)
 {
 	int	first;
 	int	second;
@@ -46,24 +46,24 @@ static void	ft_sort_three(t_stack *a)
 	second = a->top->next->index;
 	third = a->top->prev->index;
 	if (first > second && second < third && first < third)
-		sa(a);
+		sa(a, data);
 	else if (first > second && second > third)
 	{
-		sa(a);
-		rra(a);
+		sa(a, data);
+		rra(a, data);
 	}
 	else if (first > second && second < third && first > third)
-		ra(a);
+		ra(a, data);
 	else if (first < second && second > third && first < third)
 	{
-		sa(a);
-		ra(a);
+		sa(a, data);
+		ra(a, data);
 	}
 	else if (first < second && second > third && first > third)
-		rra(a);
+		rra(a, data);
 }
 
-static void	ft_bring_min_to_top(t_stack *a)
+static void	ft_bring_min_to_top(t_stack *a, t_data *data)
 {
 	int	pos;
 
@@ -71,45 +71,34 @@ static void	ft_bring_min_to_top(t_stack *a)
 	if (pos <= a->size / 2)
 	{
 		while (pos-- > 0)
-			ra(a);
+			ra(a, data);
 	}
 	else
 	{
 		while (pos < a->size)
 		{
-			rra(a);
+			rra(a, data);
 			pos++;
 		}
 	}
 }
 
-void	ft_selection(t_stack *a, t_stack *b)
+void	ft_selection(t_stack *a, t_stack *b, t_data *data)
 {
-	// t_node	*curr;
-	// int		i;
-
 	if (a->size <= 1)
 	return ;
 	if (a->size == 2)
 	{
 		if (a->top->index > a->top->next->index)
-		sa(a);
+		sa(a, data);
 		return ;
 	}
 	while (a->size > 3)
 	{
-		ft_bring_min_to_top(a);
-		pb(a, b);
+		ft_bring_min_to_top(a, data);
+		pb(a, b, data);
 	}
-	ft_sort_three(a);
+	ft_sort_three(a, data);
 	while (b->size > 0)
-    	pa(a, b);
-	// curr = a->top;
-	// i = 0;
-	// while (i < a->size)
-	// {
-	// 	ft_printf("%d\n", curr->value);
-	// 	curr = curr->next;
-	// 	i++;
-	// }
+    	pa(a, b, data);
 }

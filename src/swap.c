@@ -6,13 +6,13 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:52 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 13:37:48 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:29:01 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, t_data *data)
 {
 	int	tmp;
 
@@ -24,10 +24,13 @@ void	sa(t_stack *a)
 	tmp = a->top->index;
 	a->top->index = a->top->next->index;
 	a->top->next->index = tmp;
-	ft_printf("sa\n");
+	data->total_ops++;
+	data->sa++;
+	if (data->bench == FALSE)
+		ft_printf("sa\n");
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, t_data *data)
 {
 	int	tmp;
 
@@ -39,10 +42,13 @@ void	sb(t_stack *b)
 	tmp = b->top->index;
 	b->top->index = b->top->next->index;
 	b->top->next->index = tmp;
-	ft_printf("sb\n");
+	data->total_ops++;
+	data->sb++;
+	if (data->bench == FALSE)
+		ft_printf("sb\n");
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, t_data *data)
 {
 	int	tmp;
 
@@ -62,5 +68,8 @@ void	ss(t_stack *a, t_stack *b)
 	tmp = b->top->index;
 	b->top->index = b->top->next->index;
 	b->top->next->index = tmp;
-	ft_printf("ss\n");
+	data->total_ops++;
+	data->ss++;
+	if (data->bench == FALSE)
+		ft_printf("ss\n");
 }

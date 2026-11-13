@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:23:02 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 18:27:09 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:14:20 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,32 +105,31 @@ double	compute_disorder(int *values, int size);
 void	ft_dispatcher(t_data *data, t_stack *a, t_stack *b);
 
 /* selection.c */
-void	ft_selection(t_stack *a, t_stack *b);
-
+void	ft_selection(t_stack *a, t_stack *b, t_data *data);
 /* chunk.c */
-void	ft_chunk(t_stack *a, t_stack *b);
+void	ft_chunk(t_stack *a, t_stack *b, t_data *data);
 
 /* radix.c */
-void	ft_radix(t_stack *a, t_stack *b);
+void	ft_radix(t_stack *a, t_stack *b, t_data *data);
 
 /* push.c */
-void	pa(t_stack *a, t_stack *b);
-void	pb(t_stack *a, t_stack *b);
+void	pa(t_stack *a, t_stack *b, t_data *data);
+void	pb(t_stack *a, t_stack *b, t_data *data);
 
 /* swap.c */
-void	sa(t_stack *a);
-void	sb(t_stack *b);
-void	ss(t_stack *a, t_stack *b);
+void	sa(t_stack *a, t_data *data);
+void	sb(t_stack *b, t_data *data);
+void	ss(t_stack *a, t_stack *b, t_data *data);
 
 /* rotate.c */
-void	ra(t_stack *a);
-void	rb(t_stack *b);
-void	rr(t_stack *a, t_stack *b);
+void	ra(t_stack *a, t_data *data);
+void	rb(t_stack *b, t_data *data);
+void	rr(t_stack *a, t_stack *b, t_data *data);
 
 /* rev_rotate.c */
-void	rra(t_stack *a);
-void	rrb(t_stack *b);
-void	rrr(t_stack *a, t_stack *b);
+void	rra(t_stack *a, t_data *data);
+void	rrb(t_stack *b, t_data *data);
+void	rrr(t_stack *a, t_stack *b, t_data *data);
 
 /* bench.c */
 void	print_bench(t_data	*data);

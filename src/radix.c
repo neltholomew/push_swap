@@ -6,7 +6,7 @@
 /*   By: tarebros <tarebros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:44 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 18:21:46 by tarebros         ###   ########.fr       */
+/*   Updated: 2026/11/13 12:28:03 by tarebros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	max_pos_radix(int size)
 	return (max_pos);
 }
 
-static void	sort(t_stack *a, t_stack *b, int max)
+static void	sort(t_stack *a, t_stack *b, int max, t_data *data)
 {
 	int		i;
 	int		size;
@@ -43,35 +43,25 @@ static void	sort(t_stack *a, t_stack *b, int max)
 	while (i < size)
 	{
 		if (((a->top->index >> max) & 1) == 0)
-			pb(a, b);
+			pb(a, b, data);
 		else
-			ra(a);
+			ra(a, data);
 		i++;
 	}
 	while (b->size > 0)
-		pa(a, b);
+		pa(a, b, data);
 }
 
-void	ft_radix(t_stack *a, t_stack *b)
+void	ft_radix(t_stack *a, t_stack *b, t_data *data)
 {
 	int		max_pos;
 	int		max;
-	// int		i;
-	// t_node	*curr;
 
 	max_pos = max_pos_radix(a->size);
 	max = 0;
 	while (max < max_pos)
 	{
-		sort(a, b, max);
+		sort(a, b, max, data);
 		max++;
 	}
-	// i = 0;
-	// curr = a->top;
-	// while (i < a->size)
-	// {
-	// 	ft_printf("%d\n", curr->value);
-	// 	curr = curr->next;
-	// 	i++;
-	// }
 }
