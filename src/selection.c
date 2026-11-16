@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:37 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/16 11:55:23 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/16 15:09:04 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,28 @@ static void	ft_bring_min_to_top(t_stack *a, t_data *data)
 	}
 }
 
+static int	ft_is_sorted(t_stack *a)
+{
+	t_node	*curr;
+	int		i;
+
+	if (a->size <= 1)
+		return (TRUE);
+	curr = a->top;
+	i = 0;
+	while (i < a->size - 1)
+	{
+		if (curr->index > curr->next->index)
+			return (FALSE);
+		curr = curr->next;
+		i++;
+	}
+	return (TRUE);
+}
+
 void	ft_selection(t_stack *a, t_stack *b, t_data *data)
 {
-	if (a->size <= 1)
+	if (a->size <= 1 || ft_is_sorted(a))
 		return ;
 	if (a->size == 2)
 	{
@@ -93,12 +112,15 @@ void	ft_selection(t_stack *a, t_stack *b, t_data *data)
 			sa(a, data);
 		return ;
 	}
-	while (a->size > 3)
+	while (a->size > 3 && !ft_is_sorted(a))
 	{
 		ft_bring_min_to_top(a, data);
+		if (ft_is_sorted(a))
+			break ;
 		pb(a, b, data);
 	}
-	ft_sort_three(a, data);
+	if (!ft_is_sorted(a))
+		ft_sort_three(a, data);
 	while (b->size > 0)
 		pa(a, b, data);
 }

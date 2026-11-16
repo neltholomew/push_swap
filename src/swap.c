@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:52 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/16 12:02:43 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/16 13:32:04 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	sa(t_stack *a, t_data *data)
 	swap_top(a);
 	data->total_ops++;
 	data->sa++;
-	if (data->bench == FALSE)
-		ft_printf("sa\n");
+	ft_printf("sa\n");
 }
 
 void	sb(t_stack *b, t_data *data)
@@ -37,8 +36,7 @@ void	sb(t_stack *b, t_data *data)
 	swap_top(b);
 	data->total_ops++;
 	data->sb++;
-	if (data->bench == FALSE)
-		ft_printf("sb\n");
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack *a, t_stack *b, t_data *data)
@@ -47,6 +45,5 @@ void	ss(t_stack *a, t_stack *b, t_data *data)
 	swap_top(b);
 	data->total_ops++;
 	data->ss++;
-	if (data->bench == FALSE)
-		ft_printf("ss\n");
+	ft_printf("ss\n");
 }

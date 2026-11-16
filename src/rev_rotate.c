@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:46 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/16 11:52:30 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/16 13:31:20 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	rra(t_stack *a, t_data *data)
 	rev_rotate_top(a);
 	data->total_ops++;
 	data->rra++;
-	if (data->bench == FALSE)
-		ft_printf("rra\n");
+	ft_printf("rra\n");
 }
 
 void	rrb(t_stack *b, t_data *data)
@@ -34,8 +33,7 @@ void	rrb(t_stack *b, t_data *data)
 	rev_rotate_top(b);
 	data->total_ops++;
 	data->rrb++;
-	if (data->bench == FALSE)
-		ft_printf("rrb\n");
+	ft_printf("rrb\n");
 }
 
 void	rrr(t_stack *a, t_stack *b, t_data *data)
@@ -44,6 +42,5 @@ void	rrr(t_stack *a, t_stack *b, t_data *data)
 	rev_rotate_top(b);
 	data->total_ops++;
 	data->rrr++;
-	if (data->bench == FALSE)
-		ft_printf("rrr\n");
+	ft_printf("rrr\n");
 }
