@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:37 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/13 13:23:51 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/16 11:55:23 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,11 @@ static void	ft_bring_min_to_top(t_stack *a, t_data *data)
 void	ft_selection(t_stack *a, t_stack *b, t_data *data)
 {
 	if (a->size <= 1)
-	return ;
+		return ;
 	if (a->size == 2)
 	{
 		if (a->top->index > a->top->next->index)
-		sa(a, data);
+			sa(a, data);
 		return ;
 	}
 	while (a->size > 3)
@@ -100,5 +100,5 @@ void	ft_selection(t_stack *a, t_stack *b, t_data *data)
 	}
 	ft_sort_three(a, data);
 	while (b->size > 0)
-    	pa(a, b, data);
+		pa(a, b, data);
 }

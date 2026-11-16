@@ -6,7 +6,7 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/12 10:51:01 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/12 14:29:27 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/16 12:03:05 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_fill_stack(t_stack *a, t_data *data)
 	t_node	*node;
 	int		i;
 
-	// makes sure the stack isnt filled with garbage values
 	a->top = NULL;
 	a->bottom = NULL;
 	a->size = 0;
@@ -57,4 +56,3 @@ int	ft_fill_stack(t_stack *a, t_data *data)
 	}
 	return (TRUE);
 }
-

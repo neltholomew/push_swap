@@ -6,21 +6,21 @@
 /*   By: pcellar <pcellar@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 14:52:52 by pcellar           #+#    #+#             */
-/*   Updated: 2026/11/13 13:55:22 by pcellar          ###   ########.fr       */
+/*   Updated: 2026/11/16 12:02:43 by pcellar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void swap_top(t_stack *s)
+static void	swap_top(t_stack *s)
 {
-    int tmp;
+	int	tmp;
 
-    if (!s->top || s->top->next == s->top)
-        return ;
-    tmp = s->top->index;
-    s->top->index = s->top->next->index;
-    s->top->next->index = tmp;
+	if (!s->top || s->top->next == s->top)
+		return ;
+	tmp = s->top->index;
+	s->top->index = s->top->next->index;
+	s->top->next->index = tmp;
 }
 
 void	sa(t_stack *a, t_data *data)
@@ -29,7 +29,7 @@ void	sa(t_stack *a, t_data *data)
 	data->total_ops++;
 	data->sa++;
 	if (data->bench == FALSE)
-	ft_printf("sa\n");
+		ft_printf("sa\n");
 }
 
 void	sb(t_stack *b, t_data *data)
@@ -38,10 +38,10 @@ void	sb(t_stack *b, t_data *data)
 	data->total_ops++;
 	data->sb++;
 	if (data->bench == FALSE)
-	ft_printf("sb\n");
+		ft_printf("sb\n");
 }
 
-void    ss(t_stack *a, t_stack *b, t_data *data)
+void	ss(t_stack *a, t_stack *b, t_data *data)
 {
 	swap_top(a);
 	swap_top(b);
